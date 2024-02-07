@@ -1,0 +1,118 @@
+<%- include('partials/header.ejs'); -%>
+<!-- NAVBAR -->
+  <div class="container">
+    <div class="row">
+        
+        <div class="col-8">
+            <img src="public/bg-1.jpg" />
+        </div>
+        <div class="col-4" id="text">
+          <h2>Welcome to BookIt!</h2>
+          <p>"Discover endless literary treasures at our online bookshop. Browse our vast collection of titles, from timeless classics to contemporary bestsellers. Start your next reading adventure with us today!"</p>
+        </div>
+    </div>
+  </div>
+<!-- FILTERS -->
+<h4 class="text-muted">Filter by </h4>
+<% if(locals.userID){ %>
+<div class="d-flex flex-row">
+ 
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+   Genre
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="<%=url%>&filter=adventure" >Adventure</a></li>
+    <li><a class="dropdown-item" href="<%=url%>&filter=horror" >Horror</a></li>
+    <li><a class="dropdown-item" href="<%=url%>&filter=adventure" >Thriller</a></li>
+    <li><a class="dropdown-item" href="<%=url%>&filter=young-adult" >Young Adult</a></li>
+    <li><a class="dropdown-item" href="<%=url%>&filter=fiction" >Fiction</a></li>
+    <li><a class="dropdown-item" href="<%=url%>&filter=love" >Love</a></li>
+    <li><a class="dropdown-item" href="<%=url%>&filter=self-help" >Self-help</a></li>
+  </ul>
+</div>  
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+   Price
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    
+    
+    <li><a class="dropdown-item" href="<%=url%>&price=300" >300+</a></li>
+    <li><a class="dropdown-item" href="<%=url%>&price=400" >400+</a></li>
+    <li><a class="dropdown-item" href="<%=url%>&price=500" >500+</a></li>
+    <li><a class="dropdown-item" href="<%=url%>&price=600" >600+</a></li>
+    
+  </ul>
+</div>  
+</div>
+<% } %>
+<% if(!locals.userID){ %> 
+
+   <div class="container">
+     <div class="dropdown">
+    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+     Genre
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="/?filter=adventure" >Adventure</a></li>
+      <li><a class="dropdown-item" href="/?filter=horror" >Horror</a></li>
+      <li><a class="dropdown-item" href="/?filter=adventure" >Thriller</a></li>
+      <li><a class="dropdown-item" href="/?filter=young-adult" >Young Adult</a></li>
+      <li><a class="dropdown-item" href="/?filter=fiction" >Fiction</a></li>
+      <li><a class="dropdown-item" href="/?filter=love" >Love</a></li>
+      <li><a class="dropdown-item" href="/?filter=self-help" >Self-help</a></li>
+    </ul>
+  </div>  
+  </div>
+  <div class="container">
+  <div class="dropdown">
+    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+     Price
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      
+      
+      <li><a class="dropdown-item" href="/?price=300" >300+</a></li>
+      <li><a class="dropdown-item" href="/?price=400" >400+</a></li>
+      <li><a class="dropdown-item" href="/?price=500" >500+</a></li>
+      <li><a class="dropdown-item" href="/?price=600" >600+</a></li>
+      
+    </ul>
+  </div>  
+  </div>
+<%} %>  
+
+ <!-- All BOOKS -->
+ 
+<div class="container">
+    <div class="row" id="books">
+<% books.forEach(function(book){ %>
+    <div class="col-md-2">
+      <div class="card">
+        <img src="<%=book.image%>" class="card-img-top" alt="...">
+            <div class="card-body text-wrap">
+              <h5 class="card-title"><%=book.title%></h5>
+              <h6 class="text-muted"><%=book.author%></h6>
+              <h4 class="text-muted"> ₹<%=book.price%></h4>
+              <p class="card-text">By <%=book.about%></p>
+              <% if(locals.userID){ %> 
+                <a href="/order?user=<%=userID%>&book=<%=book.book_id%>" class="btn btn-primary">Buy</a>
+                <a href="/cart?user=<%=userID%>&book=<%=book.book_id%>"><span class="material-symbols-outlined">
+                    add_shopping_cart
+                 </span></a>
+                 <a href="/reviews?book=<%=book.book_id%>&user=<%=userID%>">Reviews</a>
+            <% } %> 
+            <%if(!locals.userID){ %>
+            <a href="/reviews?book=<%=book.book_id%>">Reviews</a>
+            <% } %>
+            </div>
+      </div>
+    </div>
+    
+
+<% }) %>
+</div>
+</div>
+
+<%- include('partials/footer.ejs'); -%>

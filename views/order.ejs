@@ -1,0 +1,21 @@
+<%- include('partials/header.ejs'); -%>
+
+<% if(locals.orders){ %>
+    <div class="d-flex flex-row">
+        <div class="row">
+        <% orders.forEach((order)=>{ %>
+           <div class="col-md">
+            <div class="card" style="width: 18em;">
+                    <div class="card-body">
+                        <img src="<%=order.image%>" class="card-img-top" alt="...">
+                      <h5 class="card-title"><%=order.title%></h5>
+                      <h4 class="text-muted">$<%=order.price%></h4>
+                    </div>
+                  </div>
+           </div>
+            
+        </div>
+    <% }) %>
+    </div>
+    </div>
+<% } %>

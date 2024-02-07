@@ -1,0 +1,25 @@
+<%- include('partials/header.ejs'); -%>
+<% if(locals.userID) { %>
+ <form action="/write" method= "post">
+  <textarea name="review" cols="30" rows="10"></textarea>
+  <input type="hidden" value="<%=userID%>" name="user" />
+  <input type="hidden" value="<%=bookID%>" name="book" />
+  
+  <button class="btn-primary">Write a review</button>
+ </form>
+<% } %>
+
+  <% if(locals.error){ %>
+   <div class="mb-3"><%=error%></div>
+<% } %>
+ <% if(locals.reviews) { %>
+<% reviews.forEach((review)=>{ %>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          
+          <p class="card-text"><%=review.review%></p>
+         
+        </div>
+      </div>
+ <% }) %>
+ <% } %>

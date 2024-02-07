@@ -1,0 +1,47 @@
+*{
+    
+    font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+    
+}
+#text{
+    margin-top: 6em;
+    font-size: 1.4em;
+    padding-top: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    
+}
+#text > h2{
+    margin-top:  -1.5em;
+    margin-bottom: 1em;
+    font-size: 2em;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+      
+}
+#navbar{
+   
+    box-shadow:  0 4px 2px -2px rgba(0, 0, 0, 0.2); 
+}
+#navbar > .container-fluid > a{
+    text-decoration: none;
+    color: rgb(35, 35, 68);
+}
+#img{
+    width: 5%;
+}
+#navbar > .container-fluid > a:hover{
+    text-decoration: none;
+    color: rgb(121, 121, 211);
+}
+.card-body > a{
+   text-decoration: none;
+   color: rgb(9, 136, 51);
+}
+.container > button{
+    margin-right: 0px;
+}
